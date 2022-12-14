@@ -1,10 +1,10 @@
-from typing import Optional
+from typing import Optional,List
 from pydantic import BaseModel
 
 class exam(BaseModel):
     email: str
     num: int
-    url: str
+    url: List[str]
 
 class examUpdate(BaseModel):
     email: Optional[str]
