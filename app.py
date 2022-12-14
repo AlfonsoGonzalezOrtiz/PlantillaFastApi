@@ -26,5 +26,5 @@ app.add_middleware(
 async def redirect(request: Request):
     return RedirectResponse(request.url._url + "docs")
 
-app.include_router(routerExam, tags=["tests"], prefix="/tests")
-app.include_router(routerTest, tags=["exam"], prefix="/exams")
+app.include_router(routerTest, tags=["tests"], prefix="/tests")
+app.include_router(routerExam, tags=["exam"], prefix="/exams")
