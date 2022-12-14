@@ -1,8 +1,8 @@
 from fastapi.responses import RedirectResponse
 
 from fastapi import FastAPI, Request
-from routes.mensaje import mensaje
-from routes.usuario import usuario
+from routes.exam import routerExam
+from routes.test import routerTest
 
 app = FastAPI(
     title="REST API with FastAPI and MongoDB",
@@ -14,5 +14,5 @@ app = FastAPI(
 async def redirect(request: Request):
     return RedirectResponse(request.url._url + "docs")
 
-app.include_router(mensaje) #me incluye todas las rutas definidas para el usuario
-app.include_router(usuario)
+app.include_router(routerExam, tags=["tests"], prefix="/tests")
+app.include_router(routerTest, tags=["exam"], prefix="/exams")
