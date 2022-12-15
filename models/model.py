@@ -17,13 +17,13 @@ class bookUpdate(BaseModel):
 
 class household(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="id")
-    vendedor: EmailStr
-    description: str
-    num: float
-    photos: List[str]
-    lat: float
-    lon: float
-    stamp: float
+    vendedor: Optional[EmailStr]
+    description: Optional[str]
+    num: Optional[float]
+    photos: Optional[List[str]]
+    lat: Optional[float]
+    lon: Optional[float]
+    stamp: Optional[float]
     comprador: Optional[EmailStr]
 
 
