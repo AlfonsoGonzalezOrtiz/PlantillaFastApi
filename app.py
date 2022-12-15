@@ -1,8 +1,8 @@
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Request
-from routes.exam import routerExam
-from routes.test import routerTest
+from routes.book import routerbook
+from routes.household import routerhousehold
 
 app = FastAPI(
     title="REST API with FastAPI and MongoDB",
@@ -26,5 +26,5 @@ app.add_middleware(
 async def redirect(request: Request):
     return RedirectResponse(request.url._url + "docs")
 
-app.include_router(routerTest, tags=["tests"], prefix="/tests")
-app.include_router(routerExam, tags=["exam"], prefix="/exams")
+app.include_router(routerhousehold, tags=["households"], prefix="/households")
+app.include_router(routerbook, tags=["books"], prefix="/bookings")
