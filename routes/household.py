@@ -5,6 +5,8 @@ from typing import List
 from config.db import db
 from models.model import household, householdUpdate
 from datetime import datetime
+from typing import Optional
+from pydantic import EmailStr
 
 routerhousehold = APIRouter()
 
@@ -77,11 +79,11 @@ def update_household(id:str, request: Request, data: householdUpdate = Body(...)
 
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"household with ID {id} not found")
 
-"""
+
 '''LIST households BY EMAIL'''
-@routerhousehold.get("/from/{email}", response_description="Get the list of households by email", response_model=List[household])
-def list_households_by_autor(email : str, request : Request, response : Response):
-    households = list(db[collection].find({"email": email}, limit = 100))
+@routerhousehold.get("/from/", response_description="Get the list of households by email", response_model=List[household])
+def list_households_by_autor(request : Request, response : Response,email: Optional[str] = "/*"):
+    households = list(db[collection].find({"vendedor": {"$regex": email}}, limit = 100))
     return households
 
 
@@ -98,4 +100,3 @@ def list_households_by_autor(stamp : float, request : Request, response : Respon
         "$gte": stamp
     }}, limit = 100))
     return households
-"""
