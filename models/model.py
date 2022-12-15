@@ -23,7 +23,7 @@ class household(BaseModel):
     photos: List[str]
     lat: float
     lon: float
-    stamp: Optional[float]
+    stamp: float
     comprador: Optional[EmailStr]
 
 

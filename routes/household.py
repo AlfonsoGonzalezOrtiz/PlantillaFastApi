@@ -13,7 +13,7 @@ collection = "household"
 '''CREATE household'''
 @routerhousehold.post("/", response_description="Create a new household", status_code=status.HTTP_201_CREATED, response_model=household)
 def create_household(request: Request, household: household = Body(...)):
-
+    
     household = jsonable_encoder(household)
     household['stamp'] = datetime.now().timestamp()
 
