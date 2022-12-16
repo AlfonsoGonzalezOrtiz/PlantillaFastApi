@@ -79,12 +79,12 @@ def update_parada(codParada:int, request: Request, data: paradaUpdate = Body(...
 
 '''LIST paradas BY POSITION'''
 @routerparada.get("/position/{lat}&{lon}", response_description="Get the list of paradas by position", response_model=List[parada])
-def list_paradas_by_autor(lat : float,lon : float, request : Request, response : Response):
+def list_paradas_by_position(lat : float,lon : float, request : Request, response : Response):
     paradas = list(db[collection].find({"lat": lat,"lon": lon}, limit = 100))
     return paradas
 
 '''LIST paradas por sentido y linea'''
-@routerparada.get("/sentidoylinea/{sentido}&{linea}", response_description="Get the list of paradas by line and direction", response_model=List[parada])
-def list_paradas_by_autor(sentido : int,linea : int, request : Request, response : Response):
+@routerparada.get("/sentido/{sentido}/linea/{linea}", response_description="Get the list of paradas by line and direction", response_model=List[parada])
+def list_paradas_by_sentidoylinea(sentido : int,linea : int, request : Request, response : Response):
     paradas = list(db[collection].find({"sentido": sentido,"codLinea": linea}, limit = 100))
     return paradas
